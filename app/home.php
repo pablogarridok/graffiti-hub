@@ -19,9 +19,6 @@
                 <div class="piece-card">
                     <!-- Header -->
                     <div class="piece-card-header">
-                        <div class="piece-card-avatar">
-                            <?= strtoupper(substr($piece['username'], 0, 1)) ?>
-                        </div>
                         <div class="piece-card-user-info">
                             <a href="/profile/<?= htmlspecialchars($piece['username']) ?>" class="piece-card-username">
                                 <?= htmlspecialchars($piece['username']) ?>

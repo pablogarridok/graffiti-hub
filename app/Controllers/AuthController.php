@@ -29,6 +29,7 @@ class AuthController {
     /**
      * Procesar login
      */
+    
     public function login() {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: /login');
@@ -54,15 +55,24 @@ class AuthController {
             exit;
         }
         
+        // Verificar si el usuario está bloqueado
+        if (isset($user['status']) && $user['status'] === 'blocked') {
+            $_SESSION['error'] = 'Tu cuenta ha sido bloqueada. Contacta al administrador.';
+            header('Location: /login');
+            exit;
+        }
+        
         // Login exitoso
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['nombre'] = $user['nombre'];
+        $_SESSION['user_role'] = $user['role'] ?? 'user'; // Guardar el rol en sesión
         
         $_SESSION['success'] = '¡Bienvenido de vuelta, ' . $user['nombre'] . '!';
         header('Location: /');
         exit;
     }
+
     
     /**
      * Mostrar formulario de registro

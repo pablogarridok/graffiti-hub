@@ -41,9 +41,6 @@ function timeAgo($datetime) {
             <!-- Header con autor -->
             <div class="piece-header">
                 <a href="/profile/<?= htmlspecialchars($piece['username']) ?>" class="piece-author">
-                    <div class="piece-avatar" style="background: <?= generateAvatarColor($piece['username']) ?>">
-                        <?= strtoupper(substr($piece['username'], 0, 2)) ?>
-                    </div>
                     <div class="piece-author-info">
                         <span class="username">@<?= htmlspecialchars($piece['username']) ?></span>
                         <span class="piece-time"><?= timeAgo($piece['created_at']) ?></span>
@@ -139,9 +136,6 @@ function timeAgo($datetime) {
                 <?php foreach ($comments as $comment): ?>
                     <div class="comment">
                         <div class="comment-header">
-                            <div class="comment-avatar" style="background: <?= generateAvatarColor($comment['username']) ?>">
-                                <?= strtoupper(substr($comment['username'], 0, 2)) ?>
-                            </div>
                             <div>
                                 <div class="comment-author">@<?= htmlspecialchars($comment['username']) ?></div>
                                 <div class="comment-date"><?= timeAgo($comment['created_at']) ?></div>

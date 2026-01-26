@@ -1,4 +1,5 @@
 <?php
+// app/Models/User.php
 
 namespace App\Models;
 
@@ -122,7 +123,7 @@ class User {
      * Obtener todos los usuarios (admin)
      */
     public function getAll($limit = 20, $offset = 0) {
-        $sql = "SELECT id, username, nombre, email, ciudad, created_at 
+        $sql = "SELECT id, username, nombre, email, ciudad, role, status, created_at 
                 FROM users 
                 ORDER BY created_at DESC
                 LIMIT :limit OFFSET :offset";
@@ -147,13 +148,25 @@ class User {
     }
     
     /**
+     * Contar usuarios bloqueados
+     */
+    public function getBlockedCount() {
+        $sql = "SELECT COUNT(*) as total FROM users WHERE status = 'blocked'";
+        $stmt = $this->db->query($sql);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return (int)$result['total'];
+    }
+    
+    /**
      * Buscar usuarios por término
      */
     public function search($term, $limit = 10) {
-        $sql = "SELECT id, username, nombre, ciudad, bio
+        $sql = "SELECT id, username, nombre, email, ciudad, role, status, bio, created_at
                 FROM users 
                 WHERE username LIKE :term 
                    OR nombre LIKE :term
+                   OR email LIKE :term
                    OR ciudad LIKE :term
                 LIMIT :limit";
         
@@ -164,5 +177,29 @@ class User {
         $stmt->execute();
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    /**
+     * Actualizar estado del usuario (active/blocked)
+     */
+    public function updateStatus($id, $status) {
+        $sql = "UPDATE users SET status = :status WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':status', $status);
+        
+        return $stmt->execute();
+    }
+    
+    /**
+     * Actualizar rol del usuario (user/admin)
+     */
+    public function updateRole($id, $role) {
+        $sql = "UPDATE users SET role = :role WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':role', $role);
+        
+        return $stmt->execute();
     }
 }

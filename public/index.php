@@ -23,6 +23,32 @@ switch (true) {
         $controller->index();
         break;
     
+    // ==================== ADMIN ====================
+    
+    // Panel de usuarios (admin)
+    case $uri === 'admin/users':
+        $controller = new App\Controllers\AdminController();
+        $controller->users();
+        break;
+    
+    // Bloquear usuario
+    case preg_match('#^admin/users/(\d+)/block$#', $uri, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST':
+        $controller = new App\Controllers\AdminController();
+        $controller->blockUser($matches[1]);
+        break;
+    
+    // Desbloquear usuario
+    case preg_match('#^admin/users/(\d+)/unblock$#', $uri, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST':
+        $controller = new App\Controllers\AdminController();
+        $controller->unblockUser($matches[1]);
+        break;
+    
+    // Eliminar usuario
+    case preg_match('#^admin/users/(\d+)/delete$#', $uri, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST':
+        $controller = new App\Controllers\AdminController();
+        $controller->deleteUser($matches[1]);
+        break;
+    
     // ==================== PIEZAS ====================
     
     // Ver pieza individual
@@ -145,10 +171,12 @@ switch (true) {
     default:
         http_response_code(404);
         require VIEWS_PATH . '/layouts/header.php';
+        echo '<div class="main-container">';
         echo '<div class="empty-state">';
         echo '<h1 style="color: #fff;">404</h1>';
         echo '<p>Página no encontrada</p>';
         echo '<a href="/" class="btn btn-primary">Volver al inicio</a>';
+        echo '</div>';
         echo '</div>';
         require VIEWS_PATH . '/layouts/footer.php';
         break;
