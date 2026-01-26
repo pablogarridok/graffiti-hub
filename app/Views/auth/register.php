@@ -3,7 +3,7 @@ $pageTitle = 'Registro - ' . APP_NAME;
 require VIEWS_PATH . '/layouts/header.php'; 
 ?>
 
-<div class="auth-container">
+<div class="auth-container1">
     <h2>Crear Cuenta</h2>
     
     <form action="/register" method="POST" class="auth-form">
