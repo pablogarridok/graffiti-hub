@@ -15,6 +15,9 @@
                 <li><a href="/">Home</a></li>
                 
                 <?php if (isset($_SESSION['user_id'])): ?>
+                    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                        <li><a href="/admin/users">Panel Admin</a></li>
+                    <?php endif; ?>
                     <li><a href="/profile/<?= htmlspecialchars($_SESSION['username']) ?>">Perfil</a></li>
                     <li><a href="/piece/upload" class="btn-upload">Subir Pieza</a></li>
                     <li><a href="/logout">Salir</a></li>
