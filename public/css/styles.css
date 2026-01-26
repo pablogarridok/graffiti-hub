@@ -15,13 +15,13 @@
   --error: #f44336;
   --heart-color: #e91e63;
 }
-
+ 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+ 
 body {
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
@@ -31,30 +31,30 @@ body {
   line-height: 1.6;
   min-height: 100vh;
 }
-
+ 
 a {
   text-decoration: none;
   color: inherit;
   transition: color 0.3s ease;
 }
-
+ 
 a:hover {
   color: var(--accent-color);
 }
-
+ 
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
-
+ 
 button {
   cursor: pointer;
   border: none;
   background: none;
   font-family: inherit;
 }
-
+ 
 /* ============================================
    HEADER / NAVBAR
    ============================================ */
@@ -67,7 +67,7 @@ button {
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
-
+ 
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -76,7 +76,7 @@ button {
   justify-content: space-between;
   align-items: center;
 }
-
+ 
 .navbar-logo {
   font-size: 1.8rem;
   font-weight: 900;
@@ -87,22 +87,22 @@ button {
   letter-spacing: -1px;
   transition: transform 0.3s ease;
 }
-
+ 
 .navbar-logo:hover {
   transform: scale(1.05);
 }
-
+ 
 .navbar-menu {
   display: flex;
   gap: 2rem;
   align-items: center;
   list-style: none;
 }
-
+ 
 .navbar-menu li {
   position: relative;
 }
-
+ 
 .navbar-menu a {
   color: var(--text-secondary);
   font-weight: 500;
@@ -111,11 +111,11 @@ button {
   display: block;
   padding: 0.5rem 0;
 }
-
+ 
 .navbar-menu a:hover {
   color: var(--text-primary);
 }
-
+ 
 .navbar-menu a::after {
   content: "";
   position: absolute;
@@ -126,11 +126,11 @@ button {
   background: var(--accent-color);
   transition: width 0.3s ease;
 }
-
+ 
 .navbar-menu a:hover::after {
   width: 100%;
 }
-
+ 
 .navbar-menu .btn-upload {
   background-color: var(--accent-color);
   color: white;
@@ -139,13 +139,13 @@ button {
   transition: all 0.3s ease;
   font-weight: 600;
 }
-
+ 
 .navbar-menu .btn-upload:hover {
   background-color: var(--accent-hover);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
 }
-
+ 
 .navbar-menu .btn-upload::after {
   display: none;
 }
@@ -193,19 +193,19 @@ button {
   width: 100%;
   max-width: 300px;
 }
-
+ 
 /* Etiquetas específicas del formulario */
 .auth-form .form-group {
   margin-bottom: 8px;
 }
-
+ 
 .auth-form label {
   display: block;
   color: var(--text-secondary);
   font-size: 14px;
   margin-bottom: 6px;
 }
-
+ 
 /* Inputs específicos del formulario */
 .auth-form input {
   width: 100%;
@@ -217,12 +217,12 @@ button {
   box-sizing: border-box;
   font-size: 14px;
 }
-
+ 
 .auth-form input:focus {
   outline: none;
   border-color: var(--accent-color);
 }
-
+ 
 /* Botón */
 .auth-form .btn-primary {
   width: 100%;
@@ -236,26 +236,26 @@ button {
   margin-top: 10px;
   transition: 0.2s;
 }
-
+ 
 .auth-form .btn-primary:hover {
   background-color: var(--accent-hover);
 }
-
+ 
 /* Texto de registro inferior */
 .auth-container p {
   font-size: 14px;
   margin-top: 20px;
 }
-
+ 
 .auth-container a {
   text-decoration: none;
   font-weight: bold;
 }
-
+ 
 .auth-container a:hover {
   text-decoration: underline;
 }
-
+ 
 /* ============================================
    CONTAINER
    ============================================ */
@@ -265,23 +265,23 @@ button {
   margin: 0 auto;
   padding: 2rem 1.5rem;
 }
-
+ 
 /* ============================================
    FEED / GRID DE PIEZAS
    ============================================ */
 .feed-header {
   margin-bottom: 2rem;
 }
-
+ 
 .feed-header h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
-
+ 
 .feed-header p {
   color: var(--text-secondary);
 }
-
+ 
 .pieces-grid,
 .feed-grid {
   display: grid;
@@ -289,7 +289,7 @@ button {
   gap: 2rem;
   margin-bottom: 3rem;
 }
-
+ 
 /* ============================================
    TARJETA DE PIEZA (según tu mockup)
    ============================================ */
@@ -301,12 +301,12 @@ button {
     transform 0.3s ease,
     box-shadow 0.3s ease;
 }
-
+ 
 .piece-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
-
+ 
 /* Header de la tarjeta con usuario */
 .piece-card-header {
   padding: 1rem;
@@ -314,7 +314,7 @@ button {
   align-items: center;
   gap: 0.75rem;
 }
-
+ 
 .piece-card-avatar {
   width: 40px;
   height: 40px;
@@ -327,18 +327,18 @@ button {
   font-size: 1.1rem;
   color: white;
 }
-
+ 
 .piece-card-user-info h3 {
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 0.1rem;
 }
-
+ 
 .piece-card-user-info p {
   font-size: 0.8rem;
   color: var(--text-muted);
 }
-
+ 
 /* Imagen de la pieza */
 .piece-card-image {
   width: 100%;
@@ -347,21 +347,21 @@ button {
   background-color: #1a1a1a;
   display: block;
 }
-
+ 
 .piece-card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
+ 
 a .piece-card-image {
   transition: transform 0.3s ease;
 }
-
+ 
 a:hover .piece-card-image {
   transform: scale(1.05);
 }
-
+ 
 /* Footer de la tarjeta con likes y comentarios */
 .piece-card-footer,
 .piece-card-actions {
@@ -370,44 +370,44 @@ a:hover .piece-card-image {
   gap: 1rem;
   margin-bottom: 0.75rem;
 }
-
+ 
 .piece-card-info {
   padding: 0 1rem 1rem 1rem;
 }
-
+ 
 .piece-card-username {
   font-weight: 600;
   color: var(--text-primary);
 }
-
+ 
 .piece-card-location {
   font-size: 0.8rem;
   color: var(--text-muted);
 }
-
+ 
 .piece-card-likes {
   font-weight: 600;
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
 }
-
+ 
 .piece-card-title {
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
-
+ 
 .piece-card-date {
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-top: 0.5rem;
 }
-
+ 
 .piece-card-actions {
   display: flex;
   gap: 1rem;
   margin-bottom: 0.75rem;
 }
-
+ 
 .action-btn {
   display: flex;
   align-items: center;
@@ -420,15 +420,15 @@ a:hover .piece-card-image {
   cursor: pointer;
   padding: 0.25rem 0.5rem;
 }
-
+ 
 .action-btn:hover {
   color: var(--text-primary);
 }
-
+ 
 .action-btn.liked {
   color: var(--heart-color);
 }
-
+ 
 .action-btn svg {
   width: 20px;
   height: 20px;
@@ -437,31 +437,31 @@ a:hover .piece-card-image {
   stroke-width: 2;
   fill: none;
 }
-
+ 
 .action-btn.liked svg {
   fill: var(--heart-color);
   stroke: var(--heart-color);
 }
-
+ 
 .piece-card-info h4 {
   font-size: 1rem;
   margin-bottom: 0.5rem;
 }
-
+ 
 .piece-card-description {
   color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.5;
   margin-bottom: 0.5rem;
 }
-
+ 
 .piece-card-meta {
   display: flex;
   gap: 1rem;
   font-size: 0.85rem;
   color: var(--text-muted);
 }
-
+ 
 /* ============================================
    BOTONES
    ============================================ */
@@ -473,50 +473,50 @@ a:hover .piece-card-image {
   display: inline-block;
   text-align: center;
 }
-
+ 
 .btn-primary {
   background-color: var(--accent-color);
   color: white;
 }
-
+ 
 .btn-primary:hover {
   background-color: var(--accent-hover);
   transform: translateY(-2px);
 }
-
+ 
 .btn-secondary {
   background-color: var(--bg-card);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
 }
-
+ 
 .btn-secondary:hover {
   background-color: var(--bg-card-hover);
 }
-
+ 
 .btn-danger {
   background-color: var(--error);
   color: white;
 }
-
+ 
 .btn-danger:hover {
   background-color: #d32f2f;
 }
-
+ 
 /* ============================================
    FORMULARIOS
    ============================================ */
 .form-group {
   margin-bottom: 1.5rem;
 }
-
+ 
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
   color: var(--text-primary);
 }
-
+ 
 .form-control {
   width: 100%;
   padding: 0.75rem;
@@ -527,21 +527,21 @@ a:hover .piece-card-image {
   font-size: 1rem;
   transition: border-color 0.3s ease;
 }
-
+ 
 .form-control:focus {
   outline: none;
   border-color: var(--accent-color);
 }
-
+ 
 textarea.form-control {
   resize: vertical;
   min-height: 120px;
 }
-
+ 
 select.form-control {
   cursor: pointer;
 }
-
+ 
 /* ============================================
    MENSAJES DE ALERTA
    ============================================ */
@@ -553,25 +553,25 @@ select.form-control {
   align-items: center;
   gap: 0.75rem;
 }
-
+ 
 .alert-success {
   background-color: rgba(76, 175, 80, 0.15);
   border: 1px solid var(--success);
   color: #81c784;
 }
-
+ 
 .alert-error {
   background-color: rgba(244, 67, 54, 0.15);
   border: 1px solid var(--error);
   color: #e57373;
 }
-
+ 
 .alert-info {
   background-color: rgba(33, 150, 243, 0.15);
   border: 1px solid #2196f3;
   color: #64b5f6;
 }
-
+ 
 /* ============================================
    EMPTY STATE
    ============================================ */
@@ -579,18 +579,18 @@ select.form-control {
   text-align: center;
   padding: 4rem 2rem;
 }
-
+ 
 .empty-state h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: var(--text-secondary);
 }
-
+ 
 .empty-state p {
   color: var(--text-muted);
   margin-bottom: 2rem;
 }
-
+ 
 /* ============================================
    PAGINACIÓN
    ============================================ */
@@ -600,7 +600,7 @@ select.form-control {
   gap: 0.5rem;
   margin-top: 3rem;
 }
-
+ 
 .pagination a,
 .pagination span {
   padding: 0.5rem 1rem;
@@ -609,17 +609,17 @@ select.form-control {
   color: var(--text-secondary);
   transition: all 0.3s ease;
 }
-
+ 
 .pagination a:hover {
   background-color: var(--bg-card-hover);
   color: var(--text-primary);
 }
-
+ 
 .pagination .active {
   background-color: var(--accent-color);
   color: white;
 }
-
+ 
 /* ============================================
    FILTROS Y BÚSQUEDA
    ============================================ */
@@ -629,13 +629,13 @@ select.form-control {
   margin-bottom: 2rem;
   flex-wrap: wrap;
 }
-
+ 
 .search-box {
   flex: 1;
   min-width: 300px;
   position: relative;
 }
-
+ 
 .search-box input {
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.5rem;
@@ -644,7 +644,7 @@ select.form-control {
   background-color: var(--bg-card);
   color: var(--text-primary);
 }
-
+ 
 .search-box::before {
   content: "🔍";
   position: absolute;
@@ -652,13 +652,13 @@ select.form-control {
   top: 50%;
   transform: translateY(-50%);
 }
-
+ 
 .style-filters {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
-
+ 
 .style-tag {
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -668,13 +668,13 @@ select.form-control {
   transition: all 0.3s ease;
   border: 1px solid transparent;
 }
-
+ 
 .style-tag:hover,
 .style-tag.active {
   background-color: var(--accent-color);
   color: white;
 }
-
+ 
 /* ============================================
    DETALLE DE PIEZA
    ============================================ */
@@ -686,7 +686,7 @@ select.form-control {
   overflow: hidden;
   margin-bottom: 2rem;
 }
-
+ 
 .piece-detail-image {
   width: 100%;
   background-color: #000;
@@ -696,31 +696,31 @@ select.form-control {
   align-items: center;
   justify-content: center;
 }
-
+ 
 .piece-detail-image img {
   width: 100%;
   height: auto;
   display: block;
 }
-
+ 
 .piece-detail-content {
   padding: 2rem;
 }
-
+ 
 .piece-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
 }
-
+ 
 .piece-author {
   display: flex;
   align-items: center;
   gap: 1rem;
   text-decoration: none;
 }
-
+ 
 .piece-avatar {
   width: 48px;
   height: 48px;
@@ -733,43 +733,43 @@ select.form-control {
   color: white;
   flex-shrink: 0;
 }
-
+ 
 .piece-author-info {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
-
+ 
 .piece-author-info .username {
   font-weight: 600;
   color: var(--text-primary);
   font-size: 1rem;
 }
-
+ 
 .piece-time {
   color: var(--text-muted);
   font-size: 0.85rem;
 }
-
+ 
 .piece-actions-owner {
   display: flex;
   gap: 0.75rem;
 }
-
+ 
 .piece-title {
   font-size: 1.75rem;
   color: var(--text-primary);
   margin-bottom: 1rem;
   font-weight: 700;
 }
-
+ 
 .piece-description {
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 1.5rem;
   font-size: 1rem;
 }
-
+ 
 .piece-metadata {
   display: flex;
   gap: 1.5rem;
@@ -777,7 +777,7 @@ select.form-control {
   flex-wrap: wrap;
   align-items: center;
 }
-
+ 
 .piece-location {
   display: flex;
   align-items: center;
@@ -785,13 +785,13 @@ select.form-control {
   color: var(--text-secondary);
   font-size: 0.95rem;
 }
-
+ 
 .piece-location svg {
   width: 18px;
   height: 18px;
   color: var(--text-muted);
 }
-
+ 
 .piece-style {
   background-color: rgba(255, 107, 53, 0.15);
   color: var(--accent-color);
@@ -802,26 +802,26 @@ select.form-control {
   border: 1px solid rgba(255, 107, 53, 0.3);
   transition: all 0.3s ease;
 }
-
+ 
 .piece-style:hover {
   background-color: rgba(255, 107, 53, 0.25);
   border-color: var(--accent-color);
 }
-
+ 
 .piece-actions-bar {
   display: flex;
   gap: 1.5rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border-color);
 }
-
+ 
 .piece-detail-info {
   background-color: var(--bg-card);
   padding: 2rem;
   border-radius: 12px;
   margin-bottom: 2rem;
 }
-
+ 
 /* ============================================
    COMENTARIOS
    ============================================ */
@@ -832,47 +832,47 @@ select.form-control {
   padding: 2rem;
   border-radius: 12px;
 }
-
+ 
 .comments-section h3 {
   margin-bottom: 1.5rem;
   font-size: 1.25rem;
 }
-
+ 
 .comment-form {
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-
+ 
 .comment-form textarea {
   resize: vertical;
   min-height: 80px;
 }
-
+ 
 .comments-list {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-
+ 
 .comment {
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--border-color);
 }
-
+ 
 .comment:last-child {
   border-bottom: none;
   padding-bottom: 0;
 }
-
+ 
 .comment-header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 0.75rem;
 }
-
+ 
 .comment-avatar {
   width: 36px;
   height: 36px;
@@ -885,31 +885,31 @@ select.form-control {
   color: white;
   flex-shrink: 0;
 }
-
+ 
 .comment-author {
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--text-primary);
 }
-
+ 
 .comment-date {
   color: var(--text-muted);
   font-size: 0.85rem;
 }
-
+ 
 .comment-content {
   color: var(--text-secondary);
   line-height: 1.6;
   padding-left: 3rem;
 }
-
+ 
 .empty-state-text {
   color: var(--text-muted);
   text-align: center;
   padding: 3rem 0;
   font-size: 0.95rem;
 }
-
+ 
 /* ============================================
    PERFIL
    ============================================ */
@@ -922,7 +922,7 @@ select.form-control {
   gap: 2rem;
   align-items: start;
 }
-
+ 
 .profile-avatar {
   width: 100px;
   height: 100px;
@@ -936,36 +936,36 @@ select.form-control {
   color: white;
   flex-shrink: 0;
 }
-
+ 
 .profile-info {
   flex: 1;
 }
-
+ 
 .profile-info h1 {
   margin-bottom: 0.5rem;
 }
-
+ 
 .profile-stats {
   display: flex;
   gap: 2rem;
   margin: 1rem 0;
 }
-
+ 
 .stat {
   text-align: center;
 }
-
+ 
 .stat-number {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--accent-color);
 }
-
+ 
 .stat-label {
   color: var(--text-muted);
   font-size: 0.9rem;
 }
-
+ 
 /* ============================================
    FOOTER
    ============================================ */
@@ -976,30 +976,30 @@ select.form-control {
   margin-top: 4rem;
   text-align: left;
 }
-
+ 
 .site-footer .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
-
+ 
 .site-footer p {
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
 }
-
+ 
 .site-footer p:first-child {
   font-weight: 600;
   color: var(--text-primary);
   font-size: 1rem;
 }
-
+ 
 .site-footer p:last-child {
   color: var(--text-muted);
   font-size: 0.9rem;
 }
-
+ 
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -1008,76 +1008,76 @@ select.form-control {
   .feed-grid {
     grid-template-columns: 1fr;
   }
-
+ 
   .navbar-container {
     flex-direction: column;
     gap: 1rem;
     align-items: center;
   }
-
+ 
   .navbar-menu {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
   }
-
+ 
   .navbar-logo {
     font-size: 1.5rem;
   }
-
+ 
   .profile-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-
+ 
   .filters {
     flex-direction: column;
   }
-
+ 
   .search-box {
     min-width: 100%;
   }
-
+ 
   .site-footer {
     padding: 2rem 0 1.5rem;
   }
 }
-
+ 
 @media (max-width: 480px) {
   .container,
   .main-container {
     padding: 1rem;
   }
-
+ 
   .pieces-grid,
   .feed-grid {
     gap: 1rem;
   }
-
+ 
   .piece-card-header,
   .piece-card-footer {
     padding: 0.75rem;
   }
-
+ 
   .navbar {
     padding: 0.75rem 0;
   }
-
+ 
   .navbar-container {
     padding: 0 1rem;
   }
-
+ 
   .navbar-menu {
     gap: 0.75rem;
     font-size: 0.9rem;
   }
-
+ 
   .navbar-logo {
     font-size: 1.3rem;
   }
 }
-
+ 
 /* ============================================
    ANIMACIONES
    ============================================ */
@@ -1091,22 +1091,22 @@ select.form-control {
     transform: translateY(0);
   }
 }
-
+ 
 .piece-card {
   animation: fadeIn 0.5s ease-out;
 }
-
+ 
 /* ============================================
    UTILIDADES
    ============================================ */
 .text-center {
   text-align: center;
 }
-
+ 
 .text-muted {
   color: var(--text-muted);
 }
-
+ 
 .mb-1 {
   margin-bottom: 0.5rem;
 }
@@ -1119,7 +1119,7 @@ select.form-control {
 .mb-4 {
   margin-bottom: 2rem;
 }
-
+ 
 .mt-1 {
   margin-top: 0.5rem;
 }
