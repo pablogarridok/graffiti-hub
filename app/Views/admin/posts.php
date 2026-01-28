@@ -1,55 +1,55 @@
 <?php $title = 'Gestión de Posts'; ?>
 <?php include __DIR__ . '/../layouts/header.php'; ?>
 
-<div class="bg-white p-6 rounded-lg shadow-md mb-6">
+<div class="bg-gray-medium p-6 rounded-lg shadow-md mb-6">
     <div class="flex justify-between items-center">
-        <h1 class="text-3xl font-bold">Gestión de Posts</h1>
-        <a href="<?= BASE_URL ?>/admin" class="text-blue-500 hover:underline">← Volver al panel</a>
+        <h1 class="text-3xl font-bold text-gray-light">Gestión de Posts</h1>
+        <a href="<?= BASE_URL ?>/admin" class="text-yellow-hub hover:text-yellow-gold transition-colors">← Volver al panel</a>
     </div>
 </div>
 
-<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="bg-gray-medium rounded-lg shadow-md overflow-hidden">
     <table class="w-full">
-        <thead class="bg-gray-200">
+        <thead class="bg-dark-alt">
             <tr>
-                <th class="px-4 py-3 text-left">ID</th>
-                <th class="px-4 py-3 text-left">Título</th>
-                <th class="px-4 py-3 text-left">Autor</th>
-                <th class="px-4 py-3 text-left">Estado</th>
-                <th class="px-4 py-3 text-left">Fecha</th>
-                <th class="px-4 py-3 text-center">Acciones</th>
+                <th class="px-4 py-3 text-left text-gray-light">ID</th>
+                <th class="px-4 py-3 text-left text-gray-light">Título</th>
+                <th class="px-4 py-3 text-left text-gray-light">Autor</th>
+                <th class="px-4 py-3 text-left text-gray-light">Estado</th>
+                <th class="px-4 py-3 text-left text-gray-light">Fecha</th>
+                <th class="px-4 py-3 text-center text-gray-light">Acciones</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach($posts as $post): ?>
-                <tr class="border-b hover:bg-gray-50">
-                    <td class="px-4 py-3"><?= $post['id'] ?></td>
+                <tr class="border-b border-dark-alt hover:bg-dark-carbon transition-colors">
+                    <td class="px-4 py-3 text-gray-light"><?= $post['id'] ?></td>
                     <td class="px-4 py-3">
-                        <a href="<?= BASE_URL ?>/posts/<?= $post['id'] ?>" class="text-blue-600 hover:underline">
+                        <a href="<?= BASE_URL ?>/posts/<?= $post['id'] ?>" class="text-yellow-hub hover:text-yellow-gold transition-colors">
                             <?= htmlspecialchars(substr($post['title'], 0, 50)) ?>
                         </a>
                     </td>
-                    <td class="px-4 py-3"><?= htmlspecialchars($post['username']) ?></td>
+                    <td class="px-4 py-3 text-gray-light"><?= htmlspecialchars($post['username']) ?></td>
                     <td class="px-4 py-3">
                         <form method="POST" action="<?= BASE_URL ?>/admin/posts/status/<?= $post['id'] ?>" class="inline">
                             <select name="status" onchange="this.form.submit()" 
-                                    class="border border-gray-300 rounded px-2 py-1 text-sm">
+                                    class="bg-dark-alt border border-gray-500 rounded px-2 py-1 text-sm text-gray-light focus:border-yellow-hub focus:outline-none">
                                 <option value="draft" <?= $post['status'] == 'draft' ? 'selected' : '' ?>>Borrador</option>
                                 <option value="published" <?= $post['status'] == 'published' ? 'selected' : '' ?>>Publicado</option>
                             </select>
                         </form>
                     </td>
-                    <td class="px-4 py-3 text-sm text-gray-600">
+                    <td class="px-4 py-3 text-sm text-gray-400">
                         <?= date('d/m/Y', strtotime($post['created_at'])) ?>
                     </td>
                     <td class="px-4 py-3 text-center">
                         <a href="<?= BASE_URL ?>/posts/edit/<?= $post['id'] ?>" 
-                           class="text-blue-500 hover:underline text-sm mr-2">
+                           class="text-neon-green hover:text-yellow-hub transition-colors text-sm mr-2">
                             Editar
                         </a>
                         <a href="<?= BASE_URL ?>/admin/posts/delete/<?= $post['id'] ?>" 
                            onclick="return confirm('¿Eliminar post?')"
-                           class="text-red-500 hover:underline text-sm">
+                           class="text-neon-magenta hover:text-red-400 transition-colors text-sm">
                             Eliminar
                         </a>
                     </td>
