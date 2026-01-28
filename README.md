@@ -1,6 +1,6 @@
-# Blog de Graffiti - Proyecto DAW 2º
+# Blog de Graffiti
 
-Blog básico de graffiti desarrollado con PHP, MySQL y TailwindCSS.
+Blog de graffiti desarrollado con PHP, MySQL y TailwindCSS.
 
 ## Características
 
@@ -40,14 +40,14 @@ docker-compose up -d --build
 ## Usuarios de Prueba
 
 ### Administrador
-- Email: admin@blog.com
-- Password: admin
-
-### Usuarios normales
-- Email: writer1@blog.com
+- Email: admin@gmail.com
 - Password: password
 
-- Email: writer2@blog.com
+### Usuarios normales
+- Email: pablo@gmail.com
+- Password: password
+
+- Email: xavi@gmail.com
 - Password: password
 
 ## Estructura del Proyecto
