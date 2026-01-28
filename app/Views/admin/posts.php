@@ -42,17 +42,21 @@
                     <td class="px-4 py-3 text-sm text-gray-400">
                         <?= date('d/m/Y', strtotime($post['created_at'])) ?>
                     </td>
-                    <td class="px-4 py-3 text-center">
-                        <a href="<?= BASE_URL ?>/posts/edit/<?= $post['id'] ?>" 
-                           class="text-neon-green hover:text-yellow-hub transition-colors text-sm mr-2">
-                            Editar
-                        </a>
-                        <a href="<?= BASE_URL ?>/admin/posts/delete/<?= $post['id'] ?>" 
-                           onclick="return confirm('¿Eliminar post?')"
-                           class="text-neon-magenta hover:text-red-400 transition-colors text-sm">
-                            Eliminar
-                        </a>
-                    </td>
+                    <td class="px-4 py-3 text-center space-x-3">
+    <a href="<?= BASE_URL ?>/posts/edit/<?= $post['id'] ?>"
+       class="text-blue-500 hover:text-blue-700 transition text-lg"
+       title="Editar post">
+        <i class="fa-solid fa-pen-to-square"></i>
+    </a>
+
+    <a href="<?= BASE_URL ?>/admin/posts/delete/<?= $post['id'] ?>"
+       onclick="return confirm('¿Eliminar post?')"
+       class="text-red-500 hover:text-red-700 transition text-lg"
+       title="Eliminar post">
+        <i class="fa-solid fa-trash"></i>
+    </a>
+</td>
+
                 </tr>
             <?php endforeach; ?>
         </tbody>

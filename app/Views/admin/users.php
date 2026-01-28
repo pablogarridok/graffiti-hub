@@ -43,9 +43,11 @@
                         <?php if($user['id'] != $_SESSION['user_id']): ?>
                             <a href="<?= BASE_URL ?>/admin/users/delete/<?= $user['id'] ?>" 
                                onclick="return confirm('¿Eliminar usuario?')"
-                               class="text-neon-magenta hover:text-red-400 transition-colors text-sm">
-                                Eliminar
+                               class="text-red-500 hover:text-red-700 transition text-lg"
+                               title="Eliminar usuario">
+                                <i class="fa-solid fa-trash"></i>
                             </a>
+
                         <?php else: ?>
                             <span class="text-gray-500 text-sm">Tú</span>
                         <?php endif; ?>

@@ -56,7 +56,7 @@ INSERT INTO users (username, email, password, role) VALUES
 -- Insertar posts de ejemplo
 INSERT INTO posts (user_id, title, content, image, status) VALUES
 (2, 'Mi segundo graffiti', 'Esta es mi segunda pieza, creoque hya una mejoria', 'bubble_1.jpg', 'published'),
-(2, 'Mi primer graffiti', 'Este es mi primer trabajo en el arte urbano. Lo hice en el barrio antiguo.', 'wildstyle_1.jpg', 'published'),
+(2, 'Mi primer graffiti', 'Este es mi primer trabajo en el arte urbano. Lo hice en el barrio antiguo.', 'bubble_2.jpg', 'published'),
 (3, 'Mural para mi tio', 'Mi tio  me pidio que le hiciese una pieza xuleta en el salon, y yo ni me lo pense dos veces ', 'mural_1.jpg', 'published');
 
 -- Insertar comentarios de ejemplo

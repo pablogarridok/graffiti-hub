@@ -47,8 +47,9 @@
                         <td class="px-4 py-3 text-center">
                             <a href="<?= BASE_URL ?>/admin/comments/delete/<?= $comment['id'] ?>" 
                                onclick="return confirm('¿Eliminar comentario?')"
-                               class="text-neon-magenta hover:text-red-400 transition-colors text-sm">
-                                Eliminar
+                               class="text-red-500 hover:text-red-700 transition text-lg"
+                               title="Eliminar comentario">
+                                <i class="fa-solid fa-trash"></i>
                             </a>
                         </td>
                     </tr>

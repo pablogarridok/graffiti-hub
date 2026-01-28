@@ -6,6 +6,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title><?= isset($title) ? $title : 'Graffiti-Hub' ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <script>
         tailwind.config = {
             theme: {
@@ -45,6 +48,13 @@
     <!-- Navbar -->
     <nav class="bg-dark-carbon text-gray-light p-4">
         <div class="container mx-auto flex justify-between items-center">
+            <a href="<?= BASE_URL ?>/" class="flex items-center ml-20">
+    <img src="<?= BASE_URL ?>/assets/logo.png"
+         alt="Graffiti Hub"
+         class="h-20 w-35 hover:opacity-90 transition">
+</a>
+
+
             <a href="<?= BASE_URL ?>/" 
                class="text-3xl text-gray-light tracking-wide font-graffiti">
                Graffiti-<span class="text-yellow-hub">Hub</span>
