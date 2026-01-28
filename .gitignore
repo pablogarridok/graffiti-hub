@@ -1,0 +1,13 @@
+# Imágenes subidas por usuarios
+public/uploads/posts/*
+!public/uploads/posts/.gitkeep
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
