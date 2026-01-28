@@ -54,11 +54,6 @@
          class="h-20 w-35 hover:opacity-90 transition">
 </a>
 
-
-            <a href="<?= BASE_URL ?>/" 
-               class="text-3xl text-gray-light tracking-wide font-graffiti">
-               Graffiti-<span class="text-yellow-hub">Hub</span>
-            </a>
             
             <div class="flex gap-4 font-street text-lg">
                 <a href="<?= BASE_URL ?>/" class="hover:text-yellow-hub transition-colors">INICIO</a>
