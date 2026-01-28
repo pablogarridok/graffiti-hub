@@ -6,6 +6,7 @@
     <title><?= isset($title) ? $title : 'Graffiti-Hub' ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
@@ -14,11 +15,12 @@
     <!-- Navbar -->
     <nav class="bg-gray-800 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="<?= BASE_URL ?>/" 
-               class="text-3xl  text-white tracking-wide"
-               style="font-family: 'Rubik Wet Paint', cursive;">
-               Graffiti-<span class="text-yellow-400">Hub</span>
-            </a>
+            <a href="<?= BASE_URL ?>/" class="flex items-center ml-20">
+    <img src="<?= BASE_URL ?>/assets/logo.png"
+         alt="Graffiti Hub"
+         class="h-20 w-35 hover:opacity-90 transition">
+</a>
+
 
             
             <div class="flex gap-4">
