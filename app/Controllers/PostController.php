@@ -37,10 +37,13 @@ class PostController {
             redirect('/');
         }
 
+        //Obtener posts relacionados
+        $related_posts = $this->post->getRelatedPosts($id, $post['title']);
+        
         $comments = $this->comment->getByPost($id);
         require_once __DIR__ . '/../Views/posts/show.php';
     }
-
+    
     // Mostrar formulario de crear post
     public function create() {
         if(!isLoggedIn()) {

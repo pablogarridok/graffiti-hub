@@ -112,5 +112,27 @@ class Post {
         $stmt->bindParam(':status', $status);
         return $stmt->execute();
     }
+
+    // app/Models/Post.php
+
+    public function getRelatedPosts($id, $title, $limit = 3) {
+    // Buscamos posts similares por título y contenido, excluyendo el post actual
+    $query = "SELECT p.*, u.username, 
+              MATCH(title, content) AGAINST(:title) as relevance
+              FROM " . $this->table . " p
+              LEFT JOIN users u ON p.user_id = u.id
+              WHERE p.id != :id AND p.status = 'published'
+              HAVING relevance > 0
+              ORDER BY relevance DESC
+              LIMIT :limit";
+    
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->bindParam(':title', $title);
+    $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

@@ -88,4 +88,20 @@
     ← Volver al inicio
 </a>
 
+<?php if(!empty($related_posts)): ?>
+<div class="mt-8 mb-8">
+    <h3 class="text-xl font-bold text-yellow-hub mb-4 font-street">TAMBIÉN TE PUEDE INTERESAR:</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <?php foreach($related_posts as $r): ?>
+            <a href="<?= BASE_URL ?>/posts/<?= $r['id'] ?>" class="block bg-dark-alt p-3 rounded hover:border hover:border-yellow-hub transition-all">
+                <?php if($r['image']): ?>
+                    <img src="<?= UPLOAD_URL . $r['image'] ?>" class="w-full h-24 object-cover rounded mb-2">
+                <?php endif; ?>
+                <h4 class="text-gray-light font-bold text-sm truncate"><?= htmlspecialchars($r['title']) ?></h4>
+            </a>
+        <?php endforeach; ?>
+    </div>
+</div>
+<?php endif; ?>
+
 <?php include __DIR__ . '/../layouts/footer.php'; ?>

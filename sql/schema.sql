@@ -64,3 +64,6 @@ INSERT INTO comments (post_id, user_id, content) VALUES
 (2, 3, 'Muy buen trabajo para ser el primero!'),
 (2, 1, 'Me gusta el estilo, sigue asi'),
 (1, 1, 'Vas mejorando tt!!!');
+
+-- Agregar índice de texto completo a la tabla posts
+ALTER TABLE posts ADD FULLTEXT(title, content);
