@@ -1,19 +1,23 @@
 <?php
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../config/n8n.php';
 require_once __DIR__ . '/../Models/Post.php';
 require_once __DIR__ . '/../Models/Comment.php';
+require_once __DIR__ . '/../Services/NotificationService.php';
 
 class PostController {
     private $db;
     private $post;
     private $comment;
+    private $notificationService;
 
     public function __construct() {
         $database = new Database();
         $this->db = $database->connect();
         $this->post = new Post($this->db);
         $this->comment = new Comment($this->db);
+        $this->notificationService = new NotificationService();
     }
 
     // Página principal - listar posts
@@ -95,7 +99,28 @@ class PostController {
             }
 
             // Crear post
-            if($this->post->create($_SESSION['user_id'], $title, $content, $image, $status)) {
+            $post_id = $this->post->create($_SESSION['user_id'], $title, $content, $image, $status);
+            
+            if($post_id) {
+                // ✅ NUEVA FUNCIONALIDAD: Enviar notificación si el post es publicado
+                if($status === 'published') {
+                    // Obtener datos completos del post recién creado
+                    $new_post = $this->post->getById($post_id);
+                    
+                    // Intentar enviar notificación
+                    $notification_sent = $this->notificationService->sendNewPostNotification(
+                        $new_post, 
+                        $_SESSION['username']
+                    );
+                    
+                    // Log para debugging (opcional)
+                    if($notification_sent) {
+                        error_log("✅ Notificación enviada para el post ID: {$post_id}");
+                    } else {
+                        error_log("⚠️ No se pudo enviar notificación para el post ID: {$post_id}");
+                    }
+                }
+                
                 $_SESSION['success'] = 'Post creado exitosamente';
                 redirect('/');
             } else {
@@ -145,6 +170,7 @@ class PostController {
             $title = clean($_POST['title']);
             $content = clean($_POST['content']);
             $status = clean($_POST['status']);
+            $old_status = $post['status'];
             $image = null;
 
             // Procesar nueva imagen si existe
@@ -166,6 +192,21 @@ class PostController {
 
             // Actualizar post
             if($this->post->update($id, $title, $content, $image, $status)) {
+                
+                // ✅ NUEVA FUNCIONALIDAD: Enviar notificación si el post pasa de borrador a publicado
+                if($old_status !== 'published' && $status === 'published') {
+                    // Obtener datos actualizados del post
+                    $updated_post = $this->post->getById($id);
+                    
+                    // Enviar notificación
+                    $this->notificationService->sendNewPostNotification(
+                        $updated_post, 
+                        $updated_post['username']
+                    );
+                    
+                    error_log("✅ Notificación enviada para el post actualizado ID: {$id}");
+                }
+                
                 $_SESSION['success'] = 'Post actualizado exitosamente';
                 redirect('/posts/' . $id);
             } else {
