@@ -24,6 +24,7 @@ class AuthController {
     // Procesar login
     public function login() {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            validateCsrf(); // Validar CSRF
             $email = clean($_POST['email']);
             $password = $_POST['password'];
 
@@ -43,6 +44,7 @@ class AuthController {
             $result = $this->user->login($email, $password);
             
             if($result) {
+                session_regenerate_id(true); // Prevenir Session Fixation
                 $_SESSION['user_id'] = $result['id'];
                 $_SESSION['username'] = $result['username'];
                 $_SESSION['email'] = $result['email'];
@@ -73,6 +75,7 @@ class AuthController {
     // Procesar registro
     public function register() {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            validateCsrf();
             $username = clean($_POST['username']);
             $email = clean($_POST['email']);
             $password = $_POST['password'];

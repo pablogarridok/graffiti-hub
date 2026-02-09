@@ -5,6 +5,7 @@
     <h2 class="text-2xl font-bold mb-6 text-gray-light">Editar Post</h2>
     
     <form method="POST" action="<?= BASE_URL ?>/posts/update/<?= $post['id'] ?>" enctype="multipart/form-data">
+        <?= csrf_field() ?>
         <div class="mb-4">
             <label class="block text-gray-light mb-2">Título *</label>
             <input type="text" name="title" value="<?= htmlspecialchars($post['title']) ?>" required 

@@ -37,11 +37,13 @@
                class="bg-yellow-hub text-dark-bg px-4 py-2 rounded hover:bg-yellow-gold transition-colors font-semibold">
                 Editar
             </a>
-            <a href="<?= BASE_URL ?>/posts/delete/<?= $post['id'] ?>" 
-               onclick="return confirm('¿Estás seguro de eliminar este post?')"
-               class="bg-neon-magenta text-white px-4 py-2 rounded hover:bg-red-500 transition-colors font-semibold">
-                Eliminar
-            </a>
+            <form action="<?= BASE_URL ?>/posts/delete/<?= $post['id'] ?>" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de eliminar este post?')">
+                <?= csrf_field() ?>
+                <button type="submit" 
+                   class="bg-neon-magenta text-white px-4 py-2 rounded hover:bg-red-500 transition-colors font-semibold">
+                    Eliminar
+                </button>
+            </form>
         </div>
     <?php endif; ?>
 </div>
@@ -53,6 +55,7 @@
     <!-- Formulario para agregar comentario -->
     <?php if(isLoggedIn()): ?>
         <form method="POST" action="<?= BASE_URL ?>/posts/<?= $post['id'] ?>/comment" class="mb-6">
+            <?= csrf_field() ?>
             <textarea name="content" rows="3" required placeholder="Escribe tu comentario..."
                       class="w-full px-3 py-2 bg-dark-alt border border-gray-500 rounded text-gray-light placeholder-gray-500 focus:outline-none focus:border-yellow-hub"></textarea>
             <button type="submit" 

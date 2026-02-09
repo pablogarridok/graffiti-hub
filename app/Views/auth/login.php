@@ -5,6 +5,7 @@
     <h2 class="text-2xl font-bold mb-6 text-center text-gray-light">Iniciar Sesión</h2>
     
     <form method="POST" action="<?= BASE_URL ?>/login">
+        <?= csrf_field() ?>
         <div class="mb-4">
             <label class="block text-gray-light mb-2">Email</label>
             <input type="email" name="email" required 

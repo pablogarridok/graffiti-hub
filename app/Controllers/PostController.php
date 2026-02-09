@@ -64,6 +64,7 @@ class PostController {
         }
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            validateCsrf();
             $title = clean($_POST['title']);
             $content = clean($_POST['content']);
             $status = clean($_POST['status']);
@@ -99,32 +100,37 @@ class PostController {
             }
 
             // Crear post
-            $post_id = $this->post->create($_SESSION['user_id'], $title, $content, $image, $status);
-            
-            if($post_id) {
-                // ✅ NUEVA FUNCIONALIDAD: Enviar notificación si el post es publicado
-                if($status === 'published') {
-                    // Obtener datos completos del post recién creado
-                    $new_post = $this->post->getById($post_id);
-                    
-                    // Intentar enviar notificación
-                    $notification_sent = $this->notificationService->sendNewPostNotification(
-                        $new_post, 
-                        $_SESSION['username']
-                    );
-                    
-                    // Log para debugging (opcional)
-                    if($notification_sent) {
-                        error_log("✅ Notificación enviada para el post ID: {$post_id}");
-                    } else {
-                        error_log("⚠️ No se pudo enviar notificación para el post ID: {$post_id}");
-                    }
-                }
+            try {
+                $post_id = $this->post->create($_SESSION['user_id'], $title, $content, $image, $status);
                 
-                $_SESSION['success'] = 'Post creado exitosamente';
-                redirect('/');
-            } else {
-                $_SESSION['error'] = 'Error al crear el post';
+                if($post_id) {
+                    //Enviar notificación si el post es publicado
+                    if($status === 'published') {
+                        // Obtener datos completos del post recién creado
+                        $new_post = $this->post->getById($post_id);
+                        
+                        // Intentar enviar notificación
+                        $notification_sent = $this->notificationService->sendNewPostNotification(
+                            $new_post, 
+                            $_SESSION['username']
+                        );
+                        
+                        // Log para debugging (opcional)
+                        if($notification_sent) {
+                            error_log("✅ Notificación enviada para el post ID: {$post_id}");
+                        } else {
+                            error_log("⚠️ No se pudo enviar notificación para el post ID: {$post_id}");
+                        }
+                    }
+                    
+                    $_SESSION['success'] = 'Post creado exitosamente';
+                    redirect('/');
+                } else {
+                    throw new Exception("Error al crear registro.");
+                } 
+            } catch (Exception $e) {
+                error_log("Error en create post: " . $e->getMessage());
+                $_SESSION['error'] = 'Error del sistema al crear el post.';
                 redirect('/posts/create');
             }
         }
@@ -159,6 +165,7 @@ class PostController {
         }
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            validateCsrf();
             $post = $this->post->getById($id);
 
             // Verificar permisos
@@ -191,25 +198,25 @@ class PostController {
             }
 
             // Actualizar post
-            if($this->post->update($id, $title, $content, $image, $status)) {
-                
-                // ✅ NUEVA FUNCIONALIDAD: Enviar notificación si el post pasa de borrador a publicado
-                if($old_status !== 'published' && $status === 'published') {
-                    // Obtener datos actualizados del post
-                    $updated_post = $this->post->getById($id);
+                if($this->post->update($id, $title, $content, $image, $status)) {
                     
-                    // Enviar notificación
-                    $this->notificationService->sendNewPostNotification(
-                        $updated_post, 
-                        $updated_post['username']
-                    );
+                    // Enviar notificación si el post pasa de borrador a publicado
+                    if($old_status !== 'published' && $status === 'published') {
+                        // Obtener datos actualizados del post
+                        $updated_post = $this->post->getById($id);
+                        
+                        // Enviar notificación
+                        $this->notificationService->sendNewPostNotification(
+                            $updated_post, 
+                            $updated_post['username']
+                        );
+                        
+                        error_log("Notificación enviada para el post actualizado ID: {$id}");
+                    }
                     
-                    error_log("✅ Notificación enviada para el post actualizado ID: {$id}");
-                }
-                
-                $_SESSION['success'] = 'Post actualizado exitosamente';
-                redirect('/posts/' . $id);
-            } else {
+                    $_SESSION['success'] = 'Post actualizado exitosamente';
+                    redirect('/posts/' . $id);
+                } else {
                 $_SESSION['error'] = 'Error al actualizar el post';
                 redirect('/posts/edit/' . $id);
             }
@@ -220,6 +227,19 @@ class PostController {
     public function delete($id) {
         if(!isLoggedIn()) {
             redirect('/login');
+        }
+
+        // Si es una petición GET, mostrar confirmación o rechazar (por seguridad debería ser POST)
+        // Como estamos cambiando a POST por seguridad, aquí validamos CSRF
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            validateCsrf();
+        } else {
+            // Si intentan borrar por GET, redirigir o mostrar error.
+            // Para mantener compatibilidad con el botón antiguo si alguien lo usa, 
+            // idealmente deberíamos mostrar una vista de confirmación, 
+            // pero para este ejercicio forzaremos POST.
+             $_SESSION['error'] = 'Método no permitido. Use el botón eliminar.';
+             redirect('/posts/' . $id);
         }
 
         $post = $this->post->getById($id);
@@ -235,11 +255,16 @@ class PostController {
             unlink(UPLOAD_PATH . $post['image']);
         }
 
-        if($this->post->delete($id)) {
-            $_SESSION['success'] = 'Post eliminado';
-            redirect('/');
-        } else {
-            $_SESSION['error'] = 'Error al eliminar';
+        try {
+            if($this->post->delete($id)) {
+                $_SESSION['success'] = 'Post eliminado';
+                redirect('/');
+            } else {
+                 throw new Exception("Error al eliminar registro.");
+            }
+        } catch (Exception $e) {
+            error_log("Error en delete post: " . $e->getMessage());
+            $_SESSION['error'] = 'Error del sistema al eliminar.';
             redirect('/');
         }
     }
@@ -251,6 +276,7 @@ class PostController {
         }
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            validateCsrf();
             $content = clean($_POST['content']);
 
             if(empty($content)) {

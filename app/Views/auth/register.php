@@ -5,6 +5,7 @@
     <h2 class="text-2xl font-bold mb-6 text-center text-gray-light">Crear Cuenta</h2>
     
     <form method="POST" action="<?= BASE_URL ?>/register">
+        <?= csrf_field() ?>
         <div class="mb-4">
             <label class="block text-gray-light mb-2">Nombre de Usuario</label>
             <input type="text" name="username" required minlength="3"
