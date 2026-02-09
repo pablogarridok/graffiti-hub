@@ -47,12 +47,12 @@
 <body class="bg-dark-bg min-h-screen flex flex-col">
     
     <!-- Navbar -->
-    <nav class="bg-dark-carbon text-gray-light p-4">
+    <nav class="bg-dark-carbon text-gray-light py-1 px-4 shadow-sm">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="<?= BASE_URL ?>/" class="flex items-center ml-20">
-    <img src="<?= BASE_URL ?>/assets/logo.png"
+            <a href="<?= BASE_URL ?>/" class="flex items-center ml-10">
+    <img src="<?= BASE_URL ?>/assets/logonovo.png"
          alt="Graffiti Hub"
-         class="h-20 w-35 hover:opacity-90 transition">
+         class="w-36">
 </a>
 
             
