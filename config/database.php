@@ -8,18 +8,15 @@ class Database {
     private $conn;
 
     public function __construct() {
-        // Usar variables de entorno o valores por defecto
         $this->host = getenv('DB_HOST') ?: 'db';
         $this->db_name = getenv('DB_NAME') ?: 'blog_db';
         $this->username = getenv('DB_USER') ?: 'blog_user';
         $this->password = getenv('DB_PASS') ?: 'blog_password';
     }
 
-    // Conectar a la base de datos
     public function connect() {
         $this->conn = null;
 
-        // Reintentar conexión hasta 10 veces (para esperar a que MySQL esté listo)
         $max_attempts = 10;
         $attempt = 0;
 
@@ -42,7 +39,6 @@ class Database {
                     die("Error de conexión después de $max_attempts intentos: " . $e->getMessage() . 
                         "<br><br>Asegúrate de que los contenedores estén corriendo: <code>docker-compose up -d</code>");
                 }
-                // Esperar 1 segundo antes de reintentar
                 sleep(1);
             }
         }

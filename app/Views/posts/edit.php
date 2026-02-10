@@ -18,7 +18,6 @@
                       class="w-full px-3 py-2 bg-dark-alt border border-gray-500 rounded text-gray-light focus:outline-none focus:border-yellow-hub"><?= htmlspecialchars($post['content']) ?></textarea>
         </div>
         
-        <!-- Imagen actual -->
         <?php if($post['image']): ?>
             <div class="mb-4">
                 <label class="block text-gray-light mb-2">Imagen Actual</label>

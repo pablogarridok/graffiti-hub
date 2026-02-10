@@ -1,8 +1,4 @@
 <?php
-/**
- * Servicio de Notificación via n8n Webhook
- * Envía los datos del post al workflow de n8n para que envíe el email
- */
 
 class NotificationService {
     private $webhook_url;
@@ -29,7 +25,7 @@ class NotificationService {
         try {
             // Verificar que el webhook esté configurado
             if (empty($this->webhook_url) || $this->webhook_url === 'URL_DE_TU_WEBHOOK_N8N') {
-                error_log("❌ ERROR: Webhook URL no está configurada");
+                error_log("ERROR: Webhook URL no está configurada");
                 return false;
             }
             
@@ -44,13 +40,13 @@ class NotificationService {
             ];
 
             
-            error_log("📦 Datos a enviar: " . json_encode($data, JSON_UNESCAPED_UNICODE));
+            error_log("Datos a enviar: " . json_encode($data, JSON_UNESCAPED_UNICODE));
             
             // Convertir a JSON
             $json_data = json_encode($data);
             
             if ($json_data === false) {
-                error_log("❌ ERROR: No se pudo convertir los datos a JSON");
+                error_log("ERROR: No se pudo convertir los datos a JSON");
                 return false;
             }
             
@@ -58,7 +54,7 @@ class NotificationService {
             $ch = curl_init($this->webhook_url);
             
             if ($ch === false) {
-                error_log("❌ ERROR: No se pudo inicializar cURL");
+                error_log("ERROR: No se pudo inicializar cURL");
                 return false;
             }
             
@@ -73,7 +69,7 @@ class NotificationService {
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
             
             // Ejecutar la petición
-            error_log("📡 Enviando petición al webhook...");
+            error_log("Enviando petición al webhook...");
             $response = curl_exec($ch);
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             $curl_error = curl_error($ch);
@@ -82,31 +78,31 @@ class NotificationService {
             curl_close($ch);
             
             // Log de la respuesta
-            error_log("📊 Código HTTP: " . $http_code);
+            error_log("Código HTTP: " . $http_code);
             
             if ($curl_errno !== 0) {
-                error_log("❌ ERROR cURL (#" . $curl_errno . "): " . $curl_error);
+                error_log("ERROR cURL (#" . $curl_errno . "): " . $curl_error);
                 return false;
             }
             
             if ($response !== false) {
-                error_log("📄 Respuesta: " . substr($response, 0, 500));
+                error_log("Respuesta: " . substr($response, 0, 500));
             }
             
             // Verificar si fue exitoso
             if ($http_code >= 200 && $http_code < 300) {
-                error_log("✅ NOTIFICACIÓN ENVIADA EXITOSAMENTE");
+                error_log("NOTIFICACIÓN ENVIADA EXITOSAMENTE");
                 error_log("=== FIN DE NOTIFICACIÓN ===");
                 return true;
             } else {
-                error_log("⚠️ ERROR: Código HTTP no exitoso: " . $http_code);
+                error_log("ERROR: Código HTTP no exitoso: " . $http_code);
                 error_log("Respuesta completa: " . $response);
                 error_log("=== FIN DE NOTIFICACIÓN (CON ERROR) ===");
                 return false;
             }
             
         } catch (Exception $e) {
-            error_log("❌ EXCEPCIÓN al enviar notificación: " . $e->getMessage());
+            error_log("EXCEPCIÓN al enviar notificación: " . $e->getMessage());
             error_log("Stack trace: " . $e->getTraceAsString());
             error_log("=== FIN DE NOTIFICACIÓN (CON EXCEPCIÓN) ===");
             return false;

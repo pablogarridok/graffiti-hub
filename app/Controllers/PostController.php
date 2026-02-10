@@ -20,7 +20,7 @@ class PostController {
         $this->notificationService = new NotificationService();
     }
 
-    // Página principal - listar posts
+    // Página principal
     public function index() {
         $posts = $this->post->getAllPublished();
         require_once __DIR__ . '/../Views/posts/index.php';
@@ -35,7 +35,6 @@ class PostController {
             redirect('/');
         }
 
-        // Solo mostrar posts publicados a usuarios normales
         if($post['status'] != 'published' && !isAdmin() && $_SESSION['user_id'] != $post['user_id']) {
             $_SESSION['error'] = 'No tienes permiso para ver este post';
             redirect('/');
@@ -76,7 +75,6 @@ class PostController {
                 redirect('/posts/create');
             }
 
-            // Procesar imagen si existe
             if(isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
                 $allowed = ['jpg', 'jpeg', 'png', 'gif'];
                 $filename = $_FILES['image']['name'];
@@ -106,7 +104,6 @@ class PostController {
                 if($post_id) {
                     //Enviar notificación si el post es publicado
                     if($status === 'published') {
-                        // Obtener datos completos del post recién creado
                         $new_post = $this->post->getById($post_id);
                         
                         // Intentar enviar notificación
@@ -115,12 +112,7 @@ class PostController {
                             $_SESSION['username']
                         );
                         
-                        // Log para debugging (opcional)
-                        if($notification_sent) {
-                            error_log("✅ Notificación enviada para el post ID: {$post_id}");
-                        } else {
-                            error_log("⚠️ No se pudo enviar notificación para el post ID: {$post_id}");
-                        }
+                        
                     }
                     
                     $_SESSION['success'] = 'Post creado exitosamente';
@@ -202,7 +194,6 @@ class PostController {
                     
                     // Enviar notificación si el post pasa de borrador a publicado
                     if($old_status !== 'published' && $status === 'published') {
-                        // Obtener datos actualizados del post
                         $updated_post = $this->post->getById($id);
                         
                         // Enviar notificación
@@ -229,15 +220,10 @@ class PostController {
             redirect('/login');
         }
 
-        // Si es una petición GET, mostrar confirmación o rechazar (por seguridad debería ser POST)
-        // Como estamos cambiando a POST por seguridad, aquí validamos CSRF
+       
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             validateCsrf();
         } else {
-            // Si intentan borrar por GET, redirigir o mostrar error.
-            // Para mantener compatibilidad con el botón antiguo si alguien lo usa, 
-            // idealmente deberíamos mostrar una vista de confirmación, 
-            // pero para este ejercicio forzaremos POST.
              $_SESSION['error'] = 'Método no permitido. Use el botón eliminar.';
              redirect('/posts/' . $id);
         }

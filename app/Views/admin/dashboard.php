@@ -6,7 +6,6 @@
     <p class="text-gray-400">Gestiona usuarios, posts y comentarios</p>
 </div>
 
-<!-- Estadísticas -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
     <div class="bg-neon-green text-dark-bg p-6 rounded-lg shadow-md">
         <div class="text-3xl font-bold mb-2"><?= count($users) ?></div>
@@ -24,7 +23,6 @@
     </div>
 </div>
 
-<!-- Menú de navegación -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <a href="<?= BASE_URL ?>/admin/users" class="bg-gray-medium p-6 rounded-lg shadow-md hover:border-2 hover:border-yellow-hub transition">
         <div class="text-2xl mb-2">👥</div>

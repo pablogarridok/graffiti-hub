@@ -124,7 +124,6 @@ switch($action) {
         break;
 
     default:
-        // 404 - Página no encontrada
         http_response_code(404);
         echo "<h1>404 - Página no encontrada</h1>";
         echo "<a href='" . BASE_URL . "'>Volver al inicio</a>";

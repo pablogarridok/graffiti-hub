@@ -34,17 +34,15 @@ class AuthController {
                 redirect('/login');
             }
 
-            // Validar email
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['error'] = 'Email inválido';
                 redirect('/login');
             }
 
-            // Intentar login
             $result = $this->user->login($email, $password);
             
             if($result) {
-                session_regenerate_id(true); // Prevenir Session Fixation
+                session_regenerate_id(true); 
                 $_SESSION['user_id'] = $result['id'];
                 $_SESSION['username'] = $result['username'];
                 $_SESSION['email'] = $result['email'];
@@ -87,25 +85,21 @@ class AuthController {
                 redirect('/register');
             }
 
-            // Validar longitud de username
             if(strlen($username) < 3) {
                 $_SESSION['error'] = 'El username debe tener al menos 3 caracteres';
                 redirect('/register');
             }
 
-            // Validar email
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['error'] = 'Email inválido';
                 redirect('/register');
             }
 
-            // Validar longitud de contraseña
             if(strlen($password) < 6) {
                 $_SESSION['error'] = 'La contraseña debe tener al menos 6 caracteres';
                 redirect('/register');
             }
 
-            // Verificar que las contraseñas coincidan
             if($password !== $confirm_password) {
                 $_SESSION['error'] = 'Las contraseñas no coinciden';
                 redirect('/register');

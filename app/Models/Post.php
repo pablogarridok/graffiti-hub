@@ -21,7 +21,6 @@ class Post {
         $stmt->bindParam(':status', $status);
         
         if($stmt->execute()) {
-            // ✅ CAMBIO IMPORTANTE: Retornar el ID del post recién creado
             return $this->conn->lastInsertId();
         }
         
